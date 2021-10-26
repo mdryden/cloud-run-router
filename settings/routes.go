@@ -1,26 +1,14 @@
 package settings
 
-import "log"
-
-type CloudRun struct {
-	Service string `json:"service"`
-	Secure  bool   `json:"secure"`
-	// TODO: project id
-	// TODO: region
-}
-
-type CloudFunction struct {
-	Name   string `json:"name"`
-	Secure bool   `json:"secure"`
-
-	// TODO: project id
-	// TODO: region
-}
+import (
+	"cloud-run-router/route_handlers"
+	"log"
+)
 
 type Route struct {
 	Prefix   string
-	Run      *CloudRun      `json:"run,omitempty"`
-	Function *CloudFunction `json:"function,omitempty"`
+	Run      *route_handlers.CloudRun      `json:"run,omitempty"`
+	Function *route_handlers.CloudFunction `json:"function,omitempty"`
 }
 
 func writeInvalidRouteWarning(route Route, reason string) {
